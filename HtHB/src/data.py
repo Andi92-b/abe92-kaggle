@@ -2,6 +2,7 @@ import pathlib
 import pandas as pd
 
 LOCAL_GDRIVE = '/mnt/g/My Drive/Dev/datasets/hubmap-organ-segmentation'
+LOCAL_CDRIVE = '/mnt/c/dev/datasets/hubmap-organ-segmentation'
 
 def get_data_path(env, folder='base'):
     '''
@@ -11,7 +12,9 @@ def get_data_path(env, folder='base'):
         env -> 'local' or 'remote'
         folder -> 'base', 'test_images', 'train_images' or 'train_annotations'
     '''
-    if env == 'local:
+    if env == 'cdrive':
+        gdrive = pathlib.Path(LOCAL_CDRIVE)
+    elif env == 'gdrive':
         gdrive = pathlib.Path(LOCAL_GDRIVE)
     if folder=='base':
         return str(gdrive)
